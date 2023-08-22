@@ -12,9 +12,9 @@ SuperParseNmap is a command line utility that generates files containing open po
 
 - [Introduction](#introduction)
 - [Where to Get It](#where-to-get-it)
-- [Installation](#installation)
-- [Installation From Source](#installation-from-source)
-- [Usage](#usage)
+- [Recommended Installation](#recommended-installation)
+- [pip Installation From Source](#pip-installation-from-source)
+- [Manual Usage](#manual-usage)
 - [License](#license)
 - [Python Version Support](#python-version-support)
 
@@ -26,7 +26,7 @@ Briefly introduce your project here. Explain its purpose and main features.
 The source code is currently hosted on GitHub at:
 https://github.com/jfarl/superparsenmap
 
-## Installation
+## Recommended Installation
 
 Binary installers for the latest released version are available at the [Python
 Package Index (PyPI)](https://pypi.org/project/Superparsenmap)
@@ -36,17 +36,22 @@ Package Index (PyPI)](https://pypi.org/project/Superparsenmap)
 pip install superparsenmap
 ```
 
-## Installation From Source
+## pip Installation From Source
 In the `superparsenmap` directory (same one where you found this file after
 cloning the git repo), execute:
 
 	python3 -m build
-	pip install dist/superparsenmap-1.0.1.tar.gz
+	pip install dist/superparsenmap-1.x.x.tar.gz
 
-## Usage
+## Manual Usage
 
 In the `superparsenmap` directory (same one where you found this file after
 cloning the git repo), execute:
+
+	# Build the project first
+	python3 -m build
+ 
+Then,
 
 	python superparsenmap.py
 
@@ -56,25 +61,25 @@ cloning the git repo), execute:
 
 ### Usage Examples:
 
-To run the script with default options:
+To run the script with minimum required options:
 	
-	python superparsenmap.py -i hosts.csv
+	superparsenmap -i nmap_results.xml
 
 To specify an output file:
 
-	python superparsenmap.py -i hosts.csv -o hosts.xlsx
+	superparsenmap -i nmap_results.xml -o hosts --excel
 
 To overwrite the output file if it already exists:
 
-	python superparsenmap.py -i input_data.csv -o output_result.xlsx --overwrite
+	superparsenmap -i nmap_results.xml -o output_result --overwrite
 
 To generate a directory of text files grouped by ports:
 
-	python superparsenmap.py -i hosts.csv --generate_txt
+	superparsenmap -i nmap_results.xml --txt
 
 To display help for available operations:
 
-	python superparsenmap.py --help
+	superparsenmap --help
 
 ## License
 
