@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "superparsenmap"
-version = "1.0.1"
+version = "1.0.2"
 authors = [
   { name="Jonathan Farley", email="jonffarley@gmail.com" },
 ]
@@ -15,6 +15,7 @@ requires-python = ">=3.4"
 dependencies = [
  'pandas==1.5.3',
  'python_libnmap==0.7.3',
+ 'xlsxwriter==3.1.2',
 ]
 keywords = ['nmap', 'parser', 'excel', 'csv']
 classifiers = [
