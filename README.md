@@ -3,6 +3,7 @@
 |   |  |
 | ------------- | ------------- |
 | Package  | ![PyPI - Status](https://img.shields.io/pypi/status/superparsenmap) [![Upload Python Package](https://github.com/jfarl/superparsenmap/actions/workflows/python-publish.yml/badge.svg)](https://github.com/jfarl/superparsenmap/actions/workflows/python-publish.yml) [![PyPI Latest Release](https://img.shields.io/pypi/v/superparsenmap.svg)](https://pypi.org/project/superparsenmap/) ![PyPI - License](https://img.shields.io/pypi/l/superparsenmap) |
+| Compatibility | ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/superparsenmap) |
 
 SuperParseNmap is a command line utility that generates files containing open port summaries from nmap XML.
 - Supported outputs are CSV and Excel. Excel will contain additional sheets split grouped by port number and containing correlated IP addresses.
@@ -33,15 +34,17 @@ Package Index (PyPI)](https://pypi.org/project/Superparsenmap)
 
 ```bash
 # PyPI
-pip install superparsenmap
+pip3 install superparsenmap
 ```
 
 ## pip Installation From Source
 In the `superparsenmap` directory (same one where you found this file after
 cloning the git repo), execute:
 
-	python3 -m build
-	pip install dist/superparsenmap-1.x.x.tar.gz
+	> python3 -m build
+	> pip3 install dist/superparsenmap-1.x.x.tar.gz
+ 	> pip3 show superparsenmap # Check the install location and ensure it's registered in your $PATH/PATH
+ 	> superparsenmap --help
 
 ## Manual Usage
 
@@ -53,11 +56,11 @@ cloning the git repo), execute:
  
 Then,
 
-	python superparsenmap.py
+	python3 superparsenmap.py
 
 	or
 
-	python -m superparsenmap
+	python3 -m superparsenmap
 
 ### Usage Examples:
 
