@@ -104,7 +104,7 @@ def export_txt_by_port(df, output_file):
 	grouped = df.groupby("Port")
 
 	for port, data in grouped:
-		ip_addresses = data["IP"]  # Assuming IP Address is at index 0
+		ip_addresses = data["IP"]
 		file_name = f'{port}.txt'
 		file_path = Path(output_file) / file_name
 	
