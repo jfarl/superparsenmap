@@ -40,7 +40,8 @@ def parse_nmap_xml(xml_file):
 	nmap_data = NmapParser.parse_fromfile(xml_file)
 	
 	# Initialize lists to store IP addresses and ports
-	ip_addresses = hostnames = []
+	ip_addresses = []
+	hostnames = []
 	ports = []
 	protocols = []
 	services = []
@@ -59,8 +60,8 @@ def parse_nmap_xml(xml_file):
 		for service in host.services:
 			if service.open(): # Check if port is open
 				ip_addresses.append(ip)
-				hostnames.append(hostname)
 				ports.append(service.port)
+				hostnames.append(hostname)
 				protocols.append(service.protocol)
 				services.append(service.service)
 				banners.append(service.banner)
