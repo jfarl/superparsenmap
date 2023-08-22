@@ -12,8 +12,8 @@ SuperParseNmap is a command line utility that generates files containing open po
 
 - [Introduction](#introduction)
 - [Where to Get It](#where-to-get-it)
-- [Installation](#installation)
-- [pip Installation From Source [Recommended]](#pip-installation-from-source-[Recommended])
+- [Recommended Installation](#recommended-installation)
+- [pip Installation From Source](#pip-installation-from-source)
 - [Manual Usage](#manual-usage)
 - [License](#license)
 - [Python Version Support](#python-version-support)
@@ -26,7 +26,7 @@ Briefly introduce your project here. Explain its purpose and main features.
 The source code is currently hosted on GitHub at:
 https://github.com/jfarl/superparsenmap
 
-## Installation
+## Recommended Installation
 
 Binary installers for the latest released version are available at the [Python
 Package Index (PyPI)](https://pypi.org/project/Superparsenmap)
@@ -36,7 +36,7 @@ Package Index (PyPI)](https://pypi.org/project/Superparsenmap)
 pip install superparsenmap
 ```
 
-## pip Installation From Source [Recommended]
+## pip Installation From Source
 In the `superparsenmap` directory (same one where you found this file after
 cloning the git repo), execute:
 
