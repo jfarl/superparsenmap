@@ -12,6 +12,7 @@ It also supports outputting IP address lists to flat files grouped by port for l
 - [Introduction](#introduction)
 - [Where to Get It](#where-to-get-it)
 - [Installation](#installation)
+- [Installation From Source](#installation-from-source)
 - [Usage](#usage)
 - [License](#license)
 - [Python Version Support](#python-version-support)
@@ -33,6 +34,13 @@ Package Index (PyPI)](https://pypi.org/project/Superparsenmap)
 # PyPI
 pip install superparsenmap
 ```
+
+## Installation From Source
+In the `superparsenmap` directory (same one where you found this file after
+cloning the git repo), execute:
+
+	python3 -m build
+	pip install dist/superparsenmap-1.0.1.tar.gz
 
 ## Usage
 
