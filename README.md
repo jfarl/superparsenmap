@@ -13,7 +13,7 @@ SuperParseNmap is a command line utility that generates files containing open po
 - [Introduction](#introduction)
 - [Where to Get It](#where-to-get-it)
 - [Installation](#installation)
-- [pip Installation From Source](#pip-installation-from-source)
+- [pip Installation From Source [Recommended]](#pip-installation-from-source-[Recommended])
 - [Manual Usage](#manual-usage)
 - [License](#license)
 - [Python Version Support](#python-version-support)
