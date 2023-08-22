@@ -4,8 +4,9 @@
 | ------------- | ------------- |
 | Package  | ![PyPI - Status](https://img.shields.io/pypi/status/superparsenmap) [![Upload Python Package](https://github.com/jfarl/superparsenmap/actions/workflows/python-publish.yml/badge.svg)](https://github.com/jfarl/superparsenmap/actions/workflows/python-publish.yml) [![PyPI Latest Release](https://img.shields.io/pypi/v/superparsenmap.svg)](https://pypi.org/project/superparsenmap/) ![PyPI - License](https://img.shields.io/pypi/l/superparsenmap) |
 
-SuperParseNmap is a command line utility that parses nmap XML into CSV or Excel format.
-It also supports outputting IP address lists to flat files grouped by port for list importing into security tools.
+SuperParseNmap is a command line utility that generates files containing open port summaries from nmap XML.
+- Supported outputs are CSV and Excel. Excel will contain additional sheets split grouped by port number and containing correlated IP addresses.
+- Additional option for outputting IP address lists to flat files grouped by port for importing into command-line interface security tools.
 
 ## Table of Contents
 
