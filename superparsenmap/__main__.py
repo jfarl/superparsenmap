@@ -18,24 +18,26 @@
 import sys
 from pathlib import Path
 import argparse
+import logging
 import pandas as pd
 from libnmap.parser import NmapParser
 import importlib.metadata 
 
 def parse_args(): # Create the arguments
 	__version__ = importlib.metadata.version('superparsenmap')
-	parser = argparse.ArgumentParser(description="Parses nmap XML into CSV or Excel format.")
+	parser = argparse.ArgumentParser(description="Parses Nmap XML output to CSV or Excel format.")
 	parser.add_argument("-i", "--input", help="Path to the nmap xml file.", required=True)
 	parser.add_argument("-o", "--output", help="Output filename without an extension.", required=False, default=None)
-	parser.add_argument("--force", action="store_true", help="Overwrite the output file if it already exists.", required=False, default=False)
-	parser.add_argument("--all", action="store_true", help="Output all formats: Excel, CSV, and Text Files.", required=False, default=False)
-	parser.add_argument("--excel", action="store_true", help="Output an Excel .xlsx file.", required=False, default=False)
-	parser.add_argument("--csv", action="store_true", help="Output a simple .CSV file of IP addresses and ports with service banners.", required=False, default=False)
-	parser.add_argument("--txt", action="store_true", help="Output a directory of text files grouped by ports.", required=False, default=False)
-	parser.add_argument('--version', action='version', version='SuperParseNmap {version}'.format(version=__version__))
+	parser.add_argument("-v", "--verbose", action="count", help="Set the terminal output verbosity level.", required=False, default=0)
+	parser.add_argument("-f", "--force", action="store_true", help="Overwrite the output file if it already exists.", required=False, default=False)
+	parser.add_argument("-e", "--excel", action="store_true", help="Output an Excel .xlsx file.", required=False, default=False)
+	parser.add_argument("-c", "--csv", action="store_true", help="Output a simple .CSV file of IP addresses and ports with service banners.", required=False, default=False)
+	parser.add_argument("-t", "--txt", action="store_true", help="Output a directory of text files grouped by ports.", required=False, default=False)
+	parser.add_argument("-a", "--all", action="store_true", help="Output all formats: Excel, CSV, and Text Files.", required=False, default=False)
+	parser.add_argument("--version", action="version", version="SuperParseNmap {version}".format(version=__version__))
 	return parser.parse_args()
 
-def parse_nmap_xml(xml_file):
+def parse_nmap_xml(xml_file, verbosity):
 	# Parse the Nmap XML file
 	nmap_data = NmapParser.parse_fromfile(xml_file)
 	
@@ -66,10 +68,11 @@ def parse_nmap_xml(xml_file):
 				services.append(service.service)
 				banners.append(service.banner)
 
-				# print(ip_addresses[-1], ports[-1], services[-1], banners[-1])
-				# print ('[*] {0} - {1} - {2}'.format(ports[-1], services[-1], banners[-1]))
-				print ('[*] {0} - {1} - {2} - {3} - {4}'.format(ip_addresses[-1], ports[-1], hostnames[-1], protocols[-1], services[-1], banners[-1]))
-	print()
+				if verbosity:
+					print ('[*] {0} - {1} - {2} - {3} - {4}'.format(ip_addresses[-1], ports[-1], hostnames[-1], protocols[-1], services[-1], banners[-1]))
+	if verbosity:
+		print()
+
 	df = pd.DataFrame(list(zip(ip_addresses, ports, hostnames, protocols, services, banners)), columns=['IP','Port', "Hostnames", 'Protocol', 'Service', 'Banner'])
 	return df
 			
@@ -118,6 +121,10 @@ def main():
    
 	args = parse_args()
 
+	verbosity = False
+	if args.verbose > 0 :
+		verbosity = True
+
 	if args.all:
 		args.excel = args.csv = args.txt = True
 
@@ -135,7 +142,7 @@ def main():
 		output_file_wo_ext = output_file.with_suffix('') # Strip off extension
 
 	# Parse Nmap XML and create a DataFrame
-	df = parse_nmap_xml(nmap_xml_file)
+	df = parse_nmap_xml(nmap_xml_file, verbosity)
 	
 	if (args.excel):
 		output_file_xlsx_ext = output_file_wo_ext.with_suffix('.xlsx')
@@ -156,6 +163,7 @@ def main():
 			export_txt_by_port(df, output_file_wo_ext)
 		else:
 			print("[!!] ERROR: Directory", output_file_xlsx_ext ,"Exists. Skipping. Overwrite with the parameter '--force'")
+	print()
 
 if __name__ == "__main__":
 	main()
