@@ -104,12 +104,20 @@ def export_csv(df, output_file): # Save DataFrame to CSV
 def export_txt_by_port(df, output_file):
 	output_file.mkdir(parents=False, exist_ok=True)
 
+	port_dict = gen_port_dict()
 	# Group unique ports into different sheets
 	grouped = df.groupby("Port")
 
+
 	for port, data in grouped:
+		port_name = port_dict.get(port)
+		if port_name:
+			port_name = "_"+port_name
+		else:
+			port_name = ""
+
 		ip_addresses = data["IP"]
-		file_name = f'{port}.txt'
+		file_name = f'{port}{port_name}.txt'
 		file_path = Path(output_file) / file_name
 	
 		with open(file_path, 'w') as file:
@@ -164,6 +172,103 @@ def main():
 		else:
 			print("[!!] ERROR: Directory", output_file_xlsx_ext ,"Exists. Skipping. Overwrite with the parameter '--force'")
 	print()
+
+def gen_port_dict():
+	port_dict = {
+		80: "http",
+		23: "telnet",
+		443: "https",
+		21: "ftp",
+		22: "ssh",
+		25: "smtp",
+		3389: "ms-wbt-server",
+		110: "pop3",
+		445: "smb-microsoft-ds",
+		139: "netbios-ssn",
+		143: "imap",
+		53: "dns",
+		135: "msrpc",
+		3306: "mysql",
+		8080: "http-proxy",
+		1723: "pptp",
+		111: "rpcbind",
+		995: "pop3s",
+		993: "imaps",
+		5900: "vnc",
+		1025: "NFS-or-IIS",
+		587: "submission",
+		8888: "sun-answerbook",
+		199: "smux",
+		1720: "h323q931",
+		465: "smtps",
+		548: "afp",
+		113: "ident",
+		81: "hosts2-ns",
+		6001: "X11:1",
+		10000: "snet-sensor-mgmt",
+		514: "shell",
+		5060: "sip",
+		179: "bgp",
+		1026: "LSA-or-nterm",
+		2000: "cisco-sccp",
+		8443: "https-alt",
+		8000: "http-alt",
+		32768: "filenet-tms",
+		554: "rtsp",
+		26: "rsftp",
+		1433: "ms-sql-s",
+		2001: "dc",
+		515: "printer",
+		8008: "http",
+		1027: "IIS",
+		5666: "nrpe",
+		646: "ldp",
+		5000: "upnp",
+		5631: "pcanywheredata",
+		631: "ipp",
+		8081: "blackice-icecap",
+		2049: "nfs",
+		88: "kerberos-sec",
+		79: "finger",
+		5800: "vnc-http",
+		106: "pop3pw",
+		2121: "ccproxy-ftp",
+		1110: "nfsd-status",
+		6000: "X11",
+		513: "login",
+		990: "ftps",
+		5357: "wsdapi",
+		427: "svrloc",
+		543: "klogin",
+		544: "kshell",
+		5101: "admdog",
+		144: "news",
+		7: "echo",
+		389: "ldap",
+		8009: "ajp13",
+		3128: "squid-http",
+		444: "snpp",
+		9999: "abyss",
+		5009: "airport-admin",
+		7070: "realserver",
+		5190: "aol",
+		3000: "ppp",
+		5432: "postgresql",
+		1900: "upnp",
+		3986: "mapper-ws_ethd",
+		13: "daytime",
+		1029: "ms-lsa",
+		9: "discard",
+		5051: "ida-agent",
+		873: "rsync",
+		1755: "wms",
+		2717: "pn-requester",
+		4899: "radmin",
+		9100: "jetdirect",
+		119: "nntp",
+		37: "time",
+	}
+	return port_dict
 
 if __name__ == "__main__":
 	main()
