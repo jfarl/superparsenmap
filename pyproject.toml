@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "superparsenmap"
-version = "1.1.0"
+version = "1.2.0"
 authors = [
   { name="Jonathan Farley", email="jonffarley@gmail.com" },
 ]
